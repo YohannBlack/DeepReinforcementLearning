@@ -1,25 +1,23 @@
-from tqdm import tqdm
 
-from environment.LineWorld import LineWorld, play_lineworld
-from environment.GridWorld import GridWorld, play_gridworld
-from environment.TicTacToe import TicTacToe, play_tictactoe_vs_random
-from environment.Farkle import Farkle, play_farkle_vs_random
-from agent.random_agent import RandomAgent
-from agent.Q_Learning import QLearningAgent
-from agent.DQN import DQNAgent
-from agent.Farkle.DQN import DQNAgent as FarkleDQNAgent
-from agent.DDQN import DDQNAgent, play_game as ddqn_play_game
-from agent.DDQNPER import DDQNPERAgent
-from agent.Reinforce import ReinforceAgent
-from agent.Farkle.Reinforce import ReinforceAgent as FarkleReinforceAgent, play_farkle_reinforce
-from agent.ReinforceBaseline import ReinforceBaselineAgent
-from agent.Farkle.ReinforceBaseline import ReinforceBaselineAgent as FarkleReinforceBaselineAgent, play_farkle_reinforce_baseline
 from agent.ActorCritic import ActorCriticAgent
-from agent.Farkle.ActorCritic import ActorCriticAgent as FarkleActorCriticAgent, play_farkle_ac
-from agent.PPO import PPOAgent
-from agent.Farkle.PPO import PPOAgent as FarklePPOAgent, play_farkle_ppo
+from agent.DDQN import DDQNAgent
+from agent.DDQNPER import DDQNPERAgent
+from agent.DQN import DQNAgent
+from agent.Farkle.ActorCritic import ActorCriticAgent as FarkleActorCriticAgent
+from agent.Farkle.DQN import DQNAgent as FarkleDQNAgent
+from agent.Farkle.PPO import PPOAgent as FarklePPOAgent
+from agent.Farkle.Reinforce import ReinforceAgent as FarkleReinforceAgent
+from agent.Farkle.ReinforceBaseline import (
+    ReinforceBaselineAgent as FarkleReinforceBaselineAgent,
+)
+from agent.Farkle.ReinforceBaseline import play_farkle_reinforce_baseline
 from agent.MCTS import play_multiple_games
-
+from agent.PPO import PPOAgent
+from agent.Q_Learning import QLearningAgent
+from agent.random_agent import RandomAgent
+from agent.Reinforce import ReinforceAgent
+from agent.ReinforceBaseline import ReinforceBaselineAgent
+from environment.Farkle import Farkle
 from tools.utils import calculate_epsilon_decay
 
 
@@ -317,7 +315,7 @@ def demo():
 if __name__ == "__main__":
 
     # play_tictactoe_vs_random()
-    play_farkle_vs_random()
+    # play_farkle_vs_random()
     # demo()
     # env = GridWorld()
     # n_episode = 100000

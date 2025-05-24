@@ -1,84 +1,108 @@
 
 # Deep Reinforcement Learning
 
-The goal of this project is to implement mulitple Deep Reinforcement Learning algorithm from scratch without using the OpenAi Gym library for the environments. All the Reinforcment Learning algorithms will be implemented from scratch and performances will be compared.
+This project explores various Deep Reinforcement Learning algorithms applied to custom game environments like Farkle, TicTacToe, GridWorld, all of which were implemented from scratch. The goal is to implement, train, and compare different DRL agents to evaluate their performance in strategic decision-making environments.
 
-## Installation
+## 🚀 Project Goals
+- Implement classic and modern DRL algorithms such as DQN, DDQN, PPO, REINFORCE, Actor-Critic, and more.
+- Develop environments for different games to test the performance of agents.
+- Compare agent strategies and learning behaviors across multiple environments.
+- Provide a modular and extendable framework for DRL experimentation.
 
-To install the procject use the following commands:
+## 📦 Installation
+1. Clone the Repository
 
 ```bash
-  git clone https://gitlab.com/g2m-ai/demo/mini-demo-veille-concurentielle.git
+git clone https://github.com/yourusername/DeepReinforcementLearningGames.git
+cd DeepReinforcementLearningGames
 ```
 
-To create a virtual environment:
-#### On window :
+2. Create a Virtual Environment (Optional but recommended)
+
 ```bash
-python -m venv venv_name
-.\venv_name\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
-#### On Ubuntu/OSX :
+
+3. Install Dependencies
+
 ```bash
-python -m venv venv_name
-source venv_name/bin/activate
-```
-To install the dependencies :
-```bash
-cd repo
 pip install -r requirements.txt
+
+## With UV
+uv sync
 ```
-## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
-`OPENAI_API_KEY`
-`DB_PASSWORD`
-`DB_USER`
-`DB_PORT`
-`DB_NAME`
-`DB_HOST`
+## 🧠 How to Run
+The entry point is `main.py`, which can be configured to run different agents in various environments.
 
-Your file should look like this :
+### Example:
 ```bash
-OPENAI_API_KEY=sk-proj-...
-DB_PASSWORD=password
-DB_USER=username
-DB_PORT=port_nb
-DB_NAME=name
-DB_HOST=hostname
+python main.py
+```
+Uncomment and change the following:
+
+`env`: Specify the DRL environment
+
+`n_episode`: Specify the numbers of episode on which the agent will train.
+
+All functions to train with a specific algorithms are implemented in the `main.py` you just have to chose.
+
+You can customize further by editing main.py.
+
+
+
+## 📁 Project Structure
+```
+.
+├── agent/                          # All DRL algorithms, all future agents should be implemented here
+|   ├── Farkle/                     # Some custom Farkle DRl algorithms
+|       ├── ActorCritic.py
+|       └── ...
+│   ├── DQN.py                      # Deep Q-Network
+│   ├── DDQN.py                     # Double DQN
+│   ├── PPO.py                      # Proximal Policy Optimization
+│   ├── Reinforce.py                # REINFORCE algorithm
+│   ├── ActorCritic.py              # Actor-Critic agent
+│   ├── replay_buffer.py            # Experience replay buffer
+│   └── ...                         # Other agents and support files
+│
+├── environment/                    # Game environments, all futur envrionment should be implemented here
+│   ├── Farkle.py                   # Farkle game logic
+│   ├── TicTacToe.py                # Tic Tac Toe game logic
+│   ├── GridWorld.py                # Grid-based environment
+│   ├── base.py                     # Base Interface                   
+│
+├── results/                        # Logs and result outputs per agent
+│   ├── dqn/                        # Logs and result of DQN training on different environment
+|       ├── Farkle                  
+|           ├── result.json         # JSON containing the rewards per step and other metrics
+|           ├── training_plots.jpg  # An image with multiple plots to see how to agent perform during training
+|       ├── LineWorld/
+|           └── ...
+|       ├── GridWorld/
+|           └── ...
+|       ├── TicTacToe/
+|           └── ...
+│   ├── ppo/
+|       └── ...
+│   ├── reinforce/
+|       └── ...
+│   └── ...
+│
+├── tools/                    # Utility scripts
+│   └── utils.py              # Helper functions
+│
+├── main.py                   # Main script to run experiments
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
 ```
 
-## Scripts
-- `db.py` is the script containing all functions that are databse related.
-- `front.py` is the main script. This is the script you should run start everything.
-- `task.py` is the script containing all webscrapping related code.
-- `helper.py` is the script containing all the helper functions.
-- `/database` is the folder containing the SQL script to create the tables in the databse. This script should be executed once when first creating the databse.
-
-## Demo
-
-To launch the project for demo you should install a SQL Database of your choice (XAMPP for MySQL, PostgreSQL, etc.). Modify the environment variable in the .env file to match with your database.
-When the databse is live and running run the following command :
-```bash
-streamlit run front.py
-```
-The streamlit app will be live and you will be able to interact with the website.
-You might have to put the password on the master user as the project will run a sudo command.
-
-
-## TODO
-🙅 = not done, ✅ = done.
-- [🙅] Generate a new key when quota will be added to hello@g2m-ai.com OpenAI account.
-- [🙅] Deploy the website to Azure Web App service and connect to a DB.
-- [✅] Create a mapping file for the different services (Chirurgie Capilaire (100, 200, 400...) -> Chirurgie capilaire)
-- [✅] Scrape multiple website and compare them to each other to know their positionning compared to each other.
-- [✅] AttributeError: FetchNode object has no attribute update_state. This error happens on some website. Inquireries should be made.
-- [✅] Generate a pdf from a .md file with the price comparison  
+## 📊 Results & Evaluation
+Training results are stored in the `results/` directory, categorized by agent type. Each subdirectory contains performance logs, and potentially training plots.
+Models and models checkpoint are saved in a `models/` directory but the folder will not be uploaded to GitHub as it is too heavy.
 
 ## Helpful Links
-- [GitHub discussion about schema](https://github.com/ScrapeGraphAI/Scrapegraph-ai/discussions/328)
-- [ScrapGraphAI Schema](https://docs.pydantic.dev/latest/examples/files/)
-- [Azure deployment of streamlit app](https://medium.com/@MSufiyanGhori/how-to-use-azure-to-deploy-your-web-app-container-for-free-e11986bc3374). Uses Docker : need to check how it affects the app if we use docker for the DB too.
-- [How to install XAMPP on Ubuntu](https://phoenixnap.com/kb/how-to-install-xampp-on-ubuntu)
-- [How to install WAMP for Windows](https://blog.templatetoaster.com/how-to-install-wamp/)
-- [ScrapeGraphAI Attribute Error](https://github.com/ScrapeGraphAI/Scrapegraph-ai/issues/762)
+- [Deep Reinforcement Learning Hands-On (Book)](https://www.packtpub.com/en-us/product/deep-reinforcement-learning-hands-on-9781838826994)
+- [CS285: Deep Reinforcement Learning (Berkeley)](https://rail.eecs.berkeley.edu/deeprlcourse/)
 
